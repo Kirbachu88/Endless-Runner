@@ -4,13 +4,14 @@
 /* Time:   ?
 /*
 /* Citations
-/* - 
+/* - Center game window - https://phaser.discourse.group/t/how-do-i-move-phaser-game-to-the-center-of-a-browser/8577/10
 /***********************************************/
 
 let config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    scale: {autoCenter: Phaser.Scale.CENTER_BOTH},
     scene: [ Menu, Play ],
 }
 
