@@ -1,7 +1,7 @@
 // Player prefab
 class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frame) {
-        super(scene, x, y, texture, frame);
+        super(scene, x, y, texture, frame)
 
         // Add object to existing scene
         /*  
@@ -11,11 +11,14 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             whose current context is the Player object,
             to the scene that we pass in as a parameter.
         */
-        scene.add.existing(this);                       // Add to existing, displayList, updateList
+        scene.add.existing(this)    // Add to existing, displayList, updateList
         scene.physics.add.existing(this)
         
-        this.isJumping = false;
-        this.velocity = 350;
+        this.body.setCollideWorldBounds(true)
+        this.setGravityY(500)
+
+        this.isJumping = false
+        this.velocity = 350
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
     }
     
@@ -31,8 +34,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         // Jump button
         if ((cursors.space.isDown || cursors.up.isDown) && !this.isJumping) {
-            this.isJumping = true;
-            // this.sfxJump.play(); // Play SFX
+            this.isJumping = true
+            // this.sfxJump.play() // Play SFX
             console.log("[Cool Vertical Action Here]")
         }
 
@@ -43,7 +46,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Reset Player
     reset() {
-        this.isFiring = false;
-        this.y = game.config.height;
+        this.isFiring = false
+        this.y = game.config.height
     }
 }
