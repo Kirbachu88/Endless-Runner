@@ -5,11 +5,13 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        // Load
+        // Load images/tile sprites
+        this.load.image('moon', './assets/moon.png');
     }
 
     create() {
-        // Create
+        // Place moon sprite
+        this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0);
     }
 
     update() {
