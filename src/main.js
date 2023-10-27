@@ -27,15 +27,15 @@ let config = {
 }
 
 // Reserve keyboard vars
-let keyF, keyR, keyLEFT, keyRIGHT, keySPACE;
+let cursors
 
 let game = new Phaser.Game(config)
 
 let { height, width } = game.config // Destructuring an object and assigning its properties to variables
 
 // Set UI sizes
-let borderUISize = game.config.height / 15;
-let borderPadding = borderUISize / 3;
+let borderUISize = game.config.height / 15
+let borderPadding = borderUISize / 3
 
 // Functions that will be hoisted in JS
 

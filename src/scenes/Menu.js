@@ -12,12 +12,12 @@ class Menu extends Phaser.Scene {
     create() {
         // Place titlescreen sprite
         this.titlescreen = this.add.image(0, 0, 'titlescreen').setOrigin(0, 0);
-    
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+
+        cursors = this.input.keyboard.createCursorKeys();
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+        if (cursors.space.isDown) {
             this.scene.start('playScene');
         }
     }

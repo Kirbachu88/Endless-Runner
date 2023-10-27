@@ -20,13 +20,25 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
     
     update() {
+        let playerVector = new Phaser.Math.Vector2(0, 0) // Roll up a new variable every single frame
+
         // Left/Right movement
+        if (cursors.left.isDown && this.x >= 0) {
+            playerVector.x = -1
+        } else if (cursors.right.isDown && this.x <= game.config.width - this.width) {
+            playerVector.x = 1
+        }
 
         // Jump button
-        if (Phaser.Input.Keyboard.JustDown(keySPACE) && !this.isJumping) {
+        if ((cursors.space.isDown || cursors.up.isDown) && !this.isJumping) {
             this.isJumping = true;
             // this.sfxJump.play(); // Play SFX
+            console.log("[Cool Vertical Action Here]")
         }
+
+        playerVector.normalize() // Does all that math for us
+
+        this.setVelocity(this.velocity * playerVector.x, this.velocity * playerVector.y)
     }
 
     // Reset Player
