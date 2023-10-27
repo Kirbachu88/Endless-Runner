@@ -14,11 +14,14 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+
         // Place moon sprite
         this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0);
 
         // Add player (p1)
         this.player = new Player(this, width / 2, height / 2, 'player').setOrigin(0, 0);
+        this.player.body.setCollideWorldBounds(true)
+        this.player.setGravityY(500);
     }
 
     update() {
