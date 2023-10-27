@@ -5,11 +5,13 @@ class Menu extends Phaser.Scene {
     }
     
     preload() {
-        // Load
+        // Load images/tile sprites
+        this.load.image('titlescreen', './assets/titlescreen.png');
     }
 
     create() {
-        // Create  
+        // Place titlescreen sprite
+        this.titlescreen = this.add.image(0, 0, 'titlescreen').setOrigin(0, 0);
     }
 
     update() {
