@@ -6,6 +6,7 @@
 /* Citations
 /* - Change Background Color in HTML - https://blog.hubspot.com/website/change-background-color-html
 /* - Center game window - https://phaser.discourse.group/t/how-do-i-move-phaser-game-to-the-center-of-a-browser/8577/10
+/* - Character prefab with physics - https://phaser.discourse.group/t/how-to-create-complex-reusable-game-objects/2997
 /***********************************************/
 
 let config = {
@@ -29,6 +30,8 @@ let config = {
 let keyF, keyR, keyLEFT, keyRIGHT, keySPACE;
 
 let game = new Phaser.Game(config)
+
+let { height, width } = game.config // Destructuring an object and assigning its properties to variables
 
 // Set UI sizes
 let borderUISize = game.config.height / 15;
