@@ -15,7 +15,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
         
         this.body.setCollideWorldBounds(true)
-        this.setGravityY(500)
+        this.setGravityY(1000)
 
         this.canJump = false
         this.velocity = 350
@@ -47,6 +47,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         if (cursors.space.isUp && cursors.up.isUp) {
             this.power = 0
+            this.canJump = false
         }
 
         if (!this.canJump && this.body.onFloor()) {
