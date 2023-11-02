@@ -15,11 +15,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
         
         this.body.setCollideWorldBounds(true)
-        this.setGravityY(1000)
+        this.setGravityY(1500)
 
+        this.MAX_JUMP_POWER = 1.25
+        this.power = 0
         this.canJump = false
         this.velocity = 350
-        this.power = 0
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
     }
     
@@ -36,8 +37,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Jump button
         if ((cursors.space.isDown || cursors.up.isDown) && this.canJump) {
             // this.sfxJump.play() // Play SFX
-            if (this.power < 1) {
-                this.power += .1
+            if (this.power < this.MAX_JUMP_POWER) {
+                this.power += 0.25 * (this.MAX_JUMP_POWER - this.power) + .005
                 console.log(this.power)
             } else {
                 this.canJump = false
@@ -48,11 +49,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         if (cursors.space.isUp && cursors.up.isUp) {
             this.power = 0
             this.canJump = false
-        }
 
-        if (!this.canJump && this.body.onFloor()) {
-            this.power = 0
-            this.canJump = true
+            if (!this.canJump && this.body.onFloor()) {
+                this.canJump = true
+            }
         }
 
         playerVector.normalize() // Does all that math for us
