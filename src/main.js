@@ -32,12 +32,13 @@ let config = {
 }
 
 // Reserve keyboard vars
-let cursors
-let keys
+let cursors, keys, escKey
 
 let game = new Phaser.Game(config)
 
 let { height, width } = game.config // Destructuring an object and assigning its properties to variables
+
+let musicPlaying = false
 
 // Set UI sizes
 let borderUISize = game.config.height / 15

@@ -40,10 +40,16 @@ class Play extends Phaser.Scene {
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
         keys = this.input.keyboard.addKeys('W,A,S,D')
+        escKey = this.input.keyboard.addKey('ESC')
 
+        escKey.on('down', () => {this.scene.start('menuScene')}, this)
         // Background Music
+
         let bgm = this.sound.add('bgm', { loop: true });
-        bgm.play();
+        if (!musicPlaying) {
+            bgm.play()
+            musicPlaying = true
+        }
 
         // GAME OVER flag
         this.gameOver = false
