@@ -28,7 +28,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.velocity = 200
         this.jumpingVelocity = 300
 
-        // this.sfxJump = scene.sound.add('jump')          // Add SFX
+        // Add SFX
         this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
         this.sfxLand = scene.sound.add('thud', { volume: 0.4})  // Landing
 

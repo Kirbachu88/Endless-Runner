@@ -16,6 +16,7 @@ class Menu extends Phaser.Scene {
         this.load.image('foregrass', './assets/Foie Gras.png');
 
         // Load audio
+        this.load.audio('howl', './assets/howl.wav');
         this.load.audio('jump', './assets/jump_heavy.wav');
         this.load.audio('thud', './assets/thud.wav');
         this.load.audio('bgm', './assets/Loop+Volume Edit - 11 HoliznaCC0 - Dance Till You Die.mp3');
@@ -35,7 +36,7 @@ class Menu extends Phaser.Scene {
 
         // Place background tile sprite
         this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
-        this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
+                this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
         // "Player"
@@ -47,21 +48,40 @@ class Menu extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
+        this.sfxHowl = this.sound.add('howl', { volume: 0.5})
+
         cursors = this.input.keyboard.createCursorKeys();
         keys = this.input.keyboard.addKeys('C, M')
+        var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        this.sceneTransition = false
+
+        spaceBar.on('down', () => {
+            if (!this.sceneTransition) {
+                this.sceneTransition = true
+                if (!this.sfxHowl.isPlaying) {
+                    this.sfxHowl.play()
+                    this.player.play('Start')
+                }
+                this.transition = setTimeout(() => {
+                    cloudsPos = {
+                        x: this.clouds.tilePositionX,
+                        y: this.clouds.tilePositionY
+                    }
+                    this.scene.start('playScene');
+                }, 3000)
+            }
+            spaceBar.on('down', () => {
+                clearTimeout(this.transition);
+                this.scene.start('playScene');
+            }, this)
+        }, this)
     }
 
     update() {
         this.clouds.tilePositionX += 0.5;
         this.clouds.tilePositionY += 0.0125;
 
-        if (cursors.space.isDown) {
-            cloudsPos = {
-                x: this.clouds.tilePositionX,
-                y: this.clouds.tilePositionY
-            }
-            this.scene.start('playScene');
-        }
         if (keys.C.isDown) {
             this.scene.start('creditsScene');
         }

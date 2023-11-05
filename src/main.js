@@ -12,6 +12,8 @@
 /* - Looping music                      - https://phasertutorials.com/creating-a-phaser-3-template-part-3/
 /* - WASD Input                         - https://rexrainbow.github.io/phaser3-rex-notes/docs/site/keyboardevents/
 /* - Aseprite sprite atlas              - https://saricden.github.io/aseprite-sprites-in-phaser3-5
+/* - setTimeout()                       - https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
+/* - clearTimeout()                     - https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout
 /***********************************************/
 
 let config = {
