@@ -9,6 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.image('titlescreen', './assets/titlescreen.png');
 
         // Load audio
+        this.load.audio('jump', './assets/jump_heavy.wav');
         this.load.audio('thud', './assets/thud.wav');
         this.load.audio('bgm', './assets/Loop+Volume Edit - 11 HoliznaCC0 - Dance Till You Die.mp3');
     }

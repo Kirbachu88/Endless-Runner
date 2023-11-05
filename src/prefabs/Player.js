@@ -25,7 +25,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.velocity = 150
 
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
-        this.sfxLand = scene.sound.add('thud', { volume: 0.3})  // Add rocket SFX
+        this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
+        this.sfxLand = scene.sound.add('thud', { volume: 0.4})  // Landing
     }
     
     update() {
@@ -49,6 +50,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 this.canJump = false
             }
             this.setVelocityY(this.power * -500)
+        }
+
+        if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up)) && this.canJump) {
+            this.sfxJump.play()
         }
 
         if (!this.canJump && this.body.onFloor()) {
