@@ -73,6 +73,10 @@ class Menu extends Phaser.Scene {
             }
             spaceBar.on('down', () => {
                 clearTimeout(this.transition);
+                cloudsPos = {
+                    x: this.clouds.tilePositionX,
+                    y: this.clouds.tilePositionY
+                }
                 this.scene.start('playScene');
             }, this)
         }, this)
