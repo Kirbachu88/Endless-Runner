@@ -6,7 +6,9 @@ class Play extends Phaser.Scene {
 
     preload() {
         // Load images/tile sprites
+        this.load.image('stars', './assets/Stars.png');
         this.load.image('moon', './assets/moon.png');
+        this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
 
         this.load.spritesheet('player', './assets/player.png', {
@@ -15,13 +17,19 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        // Place background tile sprite
+        this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0);
+
         // Place moon sprite
         this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0);
+
+        // Place background tile sprite
+        this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
         // Add player (p1)
         this.player = new Player(this, width / 2, height / 2, 'player').setOrigin(0, 0);
 
-        // Place fore grass sprite
+        // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
@@ -41,6 +49,8 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
+        this.stars.tilePositionX += 0.125;
+        this.backgrass.tilePositionX += 7;
         this.foregrass.tilePositionX += 8;
 
         // Run (Literally)
