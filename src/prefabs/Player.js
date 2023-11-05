@@ -57,12 +57,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityY(this.power * -500)
         }
 
+        if (this.body.velocity.y < -1) {
+            this.play({key: 'JumpUp'})
+        } else if (this.body.velocity.y > 0) {
+            this.play({key: 'JumpDown'})
+        }
+
         if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(keys.W)) && this.canJump) {
             this.sfxJump.play()
         }
 
         if (!this.canJump && this.body.onFloor()) {
             if (this.thud) {
+                this.play({key: 'Walk', repeat: -1, frameRate: 4})
                 this.thud = false
                 this.sfxLand.play()
             }
