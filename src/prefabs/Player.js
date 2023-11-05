@@ -24,6 +24,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.MAX_JUMP_POWER = 1.3
         this.power = 0
         this.canJump = false
+        this.isJumping = false
         this.thud = false
         this.velocity = 200
         this.jumpingVelocity = 300
@@ -68,11 +69,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         } 
 
         if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(keys.W)) && this.canJump) {
-            this.sfxJump.play()
+            if(!this.isJumping) this.sfxJump.play()
+            this.isJumping = true
         }
 
         if (!this.canJump && this.body.onFloor()) {
             if (this.thud) {
+                this.isJumping = false
                 this.velocity = 200
                 this.play({key: 'Walk', repeat: -1, frameRate: 4})
                 this.thud = false
