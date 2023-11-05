@@ -15,12 +15,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
         
         this.body.setCollideWorldBounds(true)
-        this.setGravityY(1500)
+        this.setGravityX(-3000)
+        this.setGravityY(2500)
 
         this.MAX_JUMP_POWER = 1.25
         this.power = 0
         this.canJump = false
-        this.velocity = 350
+        this.velocity = 150
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
     }
     
