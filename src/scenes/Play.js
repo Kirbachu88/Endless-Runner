@@ -8,6 +8,7 @@ class Play extends Phaser.Scene {
         // Load images/tile sprites
         this.load.image('stars', './assets/Stars.png');
         this.load.image('moon', './assets/moon.png');
+        this.load.image('clouds', './assets/clouds.png');
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
 
@@ -24,6 +25,7 @@ class Play extends Phaser.Scene {
         this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0);
 
         // Place background tile sprite
+        this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
         // Add player (p1)
@@ -53,7 +55,10 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
+        // Scrolling Tile Sprites
         this.stars.tilePositionX += 0.25;
+        this.clouds.tilePositionX += 0.5;
+        this.clouds.tilePositionY += 0.0125;
         this.backgrass.tilePositionX += 7;
         this.foregrass.tilePositionX += 8;
 
