@@ -35,6 +35,10 @@ class Play extends Phaser.Scene {
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
 
+        // Background Music
+        let bgm = this.sound.add('bgm', { loop: true });
+        bgm.play();
+
         // GAME OVER flag
         this.gameOver = false
     }
@@ -49,7 +53,7 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
-        this.stars.tilePositionX += 0.125;
+        this.stars.tilePositionX += 0.25;
         this.backgrass.tilePositionX += 7;
         this.foregrass.tilePositionX += 8;
 
