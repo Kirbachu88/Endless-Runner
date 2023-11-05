@@ -60,6 +60,7 @@ class Play extends Phaser.Scene {
 
         // Scrolling Tile Sprites
         this.stars.tilePositionX += 0.25;
+        this.stars.tilePositionY += 0.0125;
         this.clouds.tilePositionX += 0.5;
         this.clouds.tilePositionY += 0.0125;
         this.trees.tilePositionX += 3;
