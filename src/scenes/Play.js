@@ -13,9 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
 
-        this.load.spritesheet('player', './assets/player.png', {
-            frameWidth: 128
-        })
+        this.load.aseprite('player', './assets/player.png', './assets/player.json');
     }
 
     create() {
@@ -29,6 +27,9 @@ class Play extends Phaser.Scene {
         this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
         this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
+
+        // Player
+        this.anims.createFromAseprite('player');
 
         // Add player (p1)
         this.player = new Player(this, width / 2, height, 'player').setOrigin(0, 0);

@@ -18,6 +18,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setGravityX(-3000)
         this.setGravityY(2500)
 
+        // Changing collision box
+        this.body.setSize(128, 128).setOffset(64, 64)
+
         this.MAX_JUMP_POWER = 1.25
         this.power = 0
         this.canJump = false
@@ -27,15 +30,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
         this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
         this.sfxLand = scene.sound.add('thud', { volume: 0.4})  // Landing
+
+        this.play({key: 'Walk', repeat: -1, frameRate: 4})
     }
     
     update() {
         let playerVector = new Phaser.Math.Vector2(0, 0) // Roll up a new variable every single frame
 
         // Left/Right movement
-        if ((cursors.left.isDown || keys.A.isDown) && this.x >= 0) {
+        if ((cursors.left.isDown || keys.A.isDown) && this.body.x >= 0) {
             playerVector.x = -1
-        } else if ((cursors.right.isDown || keys.D.isDown) && this.x <= game.config.width - this.width) {
+        } else if ((cursors.right.isDown || keys.D.isDown) && this.body.x <= game.config.width) {
             playerVector.x = 1
         }
 
