@@ -83,8 +83,8 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-        this.clouds.tilePositionX += 0.5;
-        this.clouds.tilePositionY += 0.0125;
+        this.clouds.tilePositionX += 0.25;
+        this.clouds.tilePositionY += 0.00625;
 
         if (keys.C.isDown) {
             this.scene.start('creditsScene');
