@@ -40,7 +40,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             // this.sfxJump.play() // Play SFX
             if (this.power < this.MAX_JUMP_POWER) {
                 this.power += 0.25 * (this.MAX_JUMP_POWER - this.power) + .005
-                console.log(this.power)
+                // console.log(this.power)
             } else {
                 this.canJump = false
             }
