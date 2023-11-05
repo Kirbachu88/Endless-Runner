@@ -38,6 +38,7 @@ class Play extends Phaser.Scene {
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
+        keys = this.input.keyboard.addKeys('W,A,S,D')
 
         // Background Music
         let bgm = this.sound.add('bgm', { loop: true });

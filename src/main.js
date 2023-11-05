@@ -10,6 +10,7 @@
 /* - Character jumping - https://phasergames.com/how-to-jump-in-phaser-3/
 /* - Check character is onFloor - https://phaser.discourse.group/t/how-to-catch-when-player-hit-the-ground-after-jump/2037
 /* - Looping music - https://phasertutorials.com/creating-a-phaser-3-template-part-3/
+/* - WASD Input - https://rexrainbow.github.io/phaser3-rex-notes/docs/site/keyboardevents/
 /***********************************************/
 
 let config = {
@@ -31,6 +32,7 @@ let config = {
 
 // Reserve keyboard vars
 let cursors
+let keys
 
 let game = new Phaser.Game(config)
 

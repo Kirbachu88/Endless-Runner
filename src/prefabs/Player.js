@@ -33,14 +33,14 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         let playerVector = new Phaser.Math.Vector2(0, 0) // Roll up a new variable every single frame
 
         // Left/Right movement
-        if (cursors.left.isDown && this.x >= 0) {
+        if ((cursors.left.isDown || keys.A.isDown) && this.x >= 0) {
             playerVector.x = -1
-        } else if (cursors.right.isDown && this.x <= game.config.width - this.width) {
+        } else if ((cursors.right.isDown || keys.D.isDown) && this.x <= game.config.width - this.width) {
             playerVector.x = 1
         }
 
         // Jump button
-        if ((cursors.space.isDown || cursors.up.isDown) && this.canJump) {
+        if ((cursors.space.isDown || cursors.up.isDown || keys.W.isDown) && this.canJump) {
             // this.sfxJump.play() // Play SFX
             if (this.power < this.MAX_JUMP_POWER) {
                 this.thud = true
@@ -52,16 +52,18 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityY(this.power * -500)
         }
 
-        if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up)) && this.canJump) {
+        if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(keys.W)) && this.canJump) {
             this.sfxJump.play()
         }
 
         if (!this.canJump && this.body.onFloor()) {
-            if (this.thud) this.sfxLand.play()
-            this.thud = false
+            if (this.thud) {
+                this.thud = false
+                this.sfxLand.play()
+            }
         }
 
-        if (cursors.space.isUp && cursors.up.isUp) {
+        if (cursors.space.isUp && cursors.up.isUp && keys.W.isUp) {
             this.power = 0
             this.canJump = false
 
