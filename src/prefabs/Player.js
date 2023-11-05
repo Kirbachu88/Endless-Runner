@@ -21,11 +21,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Changing collision box
         this.body.setSize(128, 128).setOffset(64, 64)
 
-        this.MAX_JUMP_POWER = 1.25
+        this.MAX_JUMP_POWER = 1.3
         this.power = 0
         this.canJump = false
         this.thud = false
-        this.velocity = 150
+        this.velocity = 200
+        this.jumpingVelocity = 300
 
         // this.sfxJump = scene.sound.add('jump')          // Add SFX
         this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
@@ -49,11 +50,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             // this.sfxJump.play() // Play SFX
             if (this.power < this.MAX_JUMP_POWER) {
                 this.thud = true
-                this.power += 0.25 * (this.MAX_JUMP_POWER - this.power) + .005
+                this.power += 0.25 * (this.MAX_JUMP_POWER - this.power) + .001
                 // console.log(this.power)
             } else {
                 this.canJump = false
             }
+            this.velocity = this.jumpingVelocity
             this.setVelocityY(this.power * -500)
         }
 
@@ -61,7 +63,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.play({key: 'JumpUp'})
         } else if (this.body.velocity.y > 0) {
             this.play({key: 'JumpDown'})
-        }
+        } 
 
         if((Phaser.Input.Keyboard.JustDown(cursors.space) || Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(keys.W)) && this.canJump) {
             this.sfxJump.play()
@@ -69,6 +71,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         if (!this.canJump && this.body.onFloor()) {
             if (this.thud) {
+                this.velocity = 200
                 this.play({key: 'Walk', repeat: -1, frameRate: 4})
                 this.thud = false
                 this.sfxLand.play()
