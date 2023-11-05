@@ -27,7 +27,7 @@ class Play extends Phaser.Scene {
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
         // Add player (p1)
-        this.player = new Player(this, width / 2, height / 2, 'player').setOrigin(0, 0);
+        this.player = new Player(this, width / 2, height, 'player').setOrigin(0, 0);
 
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
