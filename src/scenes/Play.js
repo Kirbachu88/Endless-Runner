@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
     preload() {
         // Load images/tile sprites
         this.load.image('moon', './assets/moon.png');
+        this.load.image('foregrass', './assets/Foie Gras.png');
 
         this.load.spritesheet('player', './assets/player.png', {
             frameWidth: 128
@@ -19,6 +20,9 @@ class Play extends Phaser.Scene {
 
         // Add player (p1)
         this.player = new Player(this, width / 2, height / 2, 'player').setOrigin(0, 0);
+
+        // Place fore grass sprite
+        this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
@@ -36,6 +40,8 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
+
+        this.foregrass.tilePositionX += 8;
 
         // Run (Literally)
         if (!this.gameOver) {
