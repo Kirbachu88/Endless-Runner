@@ -25,6 +25,8 @@ class Play extends Phaser.Scene {
 
         // Place background tile sprite
         this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
+        this.clouds.setTilePosition(cloudsPos.x + 0.5, cloudsPos.y + 0.0125)
+        
         this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
@@ -32,7 +34,7 @@ class Play extends Phaser.Scene {
         this.anims.createFromAseprite('player');
 
         // Add player (p1)
-        this.player = new Player(this, width / 2, height, 'player').setOrigin(0, 0);
+        this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
 
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
