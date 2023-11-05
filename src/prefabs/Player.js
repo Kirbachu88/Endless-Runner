@@ -59,7 +59,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityY(this.power * -500)
         }
 
-        if (this.body.velocity.y < -1) {
+        if (this.body.velocity.y > -100 && this.body.velocity.y < 500 && this.body.velocity.y != 0) {
+            this.play({key: 'JumpSlow'})
+        } else if (this.body.velocity.y < -1) {
             this.play({key: 'JumpUp'})
         } else if (this.body.velocity.y > 0) {
             this.play({key: 'JumpDown'})
