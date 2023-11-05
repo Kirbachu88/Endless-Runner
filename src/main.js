@@ -9,6 +9,7 @@
 /* - Character prefab with physics - https://phaser.discourse.group/t/how-to-create-complex-reusable-game-objects/2997
 /* - Character jumping - https://phasergames.com/how-to-jump-in-phaser-3/
 /* - Check character is onFloor - https://phaser.discourse.group/t/how-to-catch-when-player-hit-the-ground-after-jump/2037
+/* - Looping music - https://phasertutorials.com/creating-a-phaser-3-template-part-3/
 /***********************************************/
 
 let config = {
