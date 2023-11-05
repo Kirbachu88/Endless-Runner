@@ -19,11 +19,18 @@ class Menu extends Phaser.Scene {
         this.titlescreen = this.add.image(0, 0, 'titlescreen').setOrigin(0, 0);
 
         cursors = this.input.keyboard.createCursorKeys();
+        keys = this.input.keyboard.addKeys('C, M')
     }
 
     update() {
         if (cursors.space.isDown) {
             this.scene.start('playScene');
+        }
+        if (keys.C.isDown) {
+            this.scene.start('creditsScene');
+        }
+        if (keys.M.isDown) {
+            this.scene.start('manualScene');
         }
     }
 }

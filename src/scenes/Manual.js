@@ -10,6 +10,8 @@ class Manual extends Phaser.Scene {
 
     create() {
         cursors = this.input.keyboard.createCursorKeys();
+
+        this.input.keyboard.on('keydown', () => {this.scene.start('menuScene')}, this)
     }
 
     update() {
