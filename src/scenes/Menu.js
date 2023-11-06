@@ -16,6 +16,7 @@ class Menu extends Phaser.Scene {
         this.load.image('foregrass', './assets/Foie Gras.png');
 
         // Load audio
+        this.load.audio('select', './assets/select_wood.wav');
         this.load.audio('howl', './assets/howl.wav');
         this.load.audio('jump', './assets/jump_heavy.wav');
         this.load.audio('thud', './assets/thud.wav');
@@ -48,6 +49,7 @@ class Menu extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
+        this.select = this.sound.add('select')
         this.sfxHowl = this.sound.add('howl', { volume: 0.5})
 
         cursors = this.input.keyboard.createCursorKeys();
@@ -55,6 +57,7 @@ class Menu extends Phaser.Scene {
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         this.sceneTransition = false
+        this.transition = 0
 
         spaceBar.on('down', () => {
             if (!this.sceneTransition) {
@@ -87,9 +90,13 @@ class Menu extends Phaser.Scene {
         this.clouds.tilePositionY += 0.00625;
 
         if (keys.C.isDown) {
+            this.select.play();
+            clearTimeout(this.transition);
             this.scene.start('creditsScene');
         }
         if (keys.M.isDown) {
+            this.select.play();
+            clearTimeout(this.transition);
             this.scene.start('manualScene');
         }
     }
