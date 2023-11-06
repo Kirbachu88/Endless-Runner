@@ -6,7 +6,7 @@ class Rock extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)    // Add to existing, displayList, updateList
         scene.physics.add.existing(this)
 
-        this.setFrame(Phaser.Math.Between(1, 4))
+        this.setFrame(Phaser.Math.Between(0, 3))
     }
     
     update() {
@@ -18,7 +18,7 @@ class Rock extends Phaser.Physics.Arcade.Sprite {
     }
 
     reset() {
-        this.setFrame(Phaser.Math.Between(1, 4))
+        this.setFrame(Phaser.Math.Between(0, 3))
         this.setAlpha(1)
         this.body.setVelocity(0)
         this.body.position.x = width
