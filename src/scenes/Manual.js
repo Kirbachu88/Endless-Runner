@@ -9,6 +9,8 @@ class Manual extends Phaser.Scene {
     }
 
     create() {
+        this.manual = this.add.image(0, 0, 'manual').setOrigin(0, 0);
+
         this.select = this.sound.add('select')
 
         cursors = this.input.keyboard.createCursorKeys();

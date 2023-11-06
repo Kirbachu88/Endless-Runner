@@ -15,6 +15,7 @@ class Menu extends Phaser.Scene {
         this.load.image('foregrass', './assets/Foie Gras.png');
         this.load.image('spaceToStart', './assets/SpaceToStart.png');
         this.load.image('otherMenus', './assets/Other Menus.png');
+        this.load.image('manual', './assets/Manual.png');
 
         this.load.spritesheet('rock', './assets/Rocks.png', {frameWidth: 128});
 
@@ -42,7 +43,7 @@ class Menu extends Phaser.Scene {
 
         // Place background tile sprite
         this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
-                this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
+        this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
         // Create Animations
