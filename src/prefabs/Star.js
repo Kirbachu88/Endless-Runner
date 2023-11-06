@@ -13,11 +13,12 @@ class Star extends Phaser.Physics.Arcade.Sprite {
         this.body.position.x -= 1
 
         if (this.body.position.x < -this.body.width) {
-            this.body.position.x = width
+            this.reset()
         }
     }
 
     reset() {
+        this.setAlpha(1)
         this.body.setVelocity(0)
         this.body.position.x = width
     }
