@@ -9,9 +9,14 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
+        this.select = this.sound.add('select')
+
         cursors = this.input.keyboard.createCursorKeys();
         
-        this.input.keyboard.on('keydown', () => {this.scene.start('menuScene')}, this)
+        this.input.keyboard.on('keydown', () => {
+            this.select.play()
+            this.scene.start('menuScene')
+        }, this)
     }
 
     update() {

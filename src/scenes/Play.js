@@ -39,20 +39,25 @@ class Play extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
-        // Populating an object with Left/Right/Up/Down keys, Shift, and Space
-        cursors = this.input.keyboard.createCursorKeys()
-        keys = this.input.keyboard.addKeys('W,A,S,D')
-        escKey = this.input.keyboard.addKey('ESC')
-
-        escKey.on('down', () => {this.scene.start('menuScene')}, this)
         // Background Music
-
         let bgm = this.sound.add('bgm', { loop: true });
         if (!musicPlaying) {
             bgm.play()
             musicPlaying = true
         }
 
+        this.select = this.sound.add('select')
+
+        // Populating an object with Left/Right/Up/Down keys, Shift, and Space
+        cursors = this.input.keyboard.createCursorKeys()
+        keys = this.input.keyboard.addKeys('W,A,S,D')
+        escKey = this.input.keyboard.addKey('ESC')
+
+        escKey.on('down', () => {
+            this.select.play()
+            this.scene.start('menuScene')
+        }, this)
+        
         // GAME OVER flag
         this.gameOver = false
     }
