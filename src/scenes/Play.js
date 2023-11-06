@@ -5,46 +5,29 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        // Load images/tile sprites
-        this.load.image('stars', './assets/Stars.png');
-        this.load.image('title', './assets/Title.png');
-        this.load.image('moon', './assets/moon.png');
-        this.load.image('clouds', './assets/Clouds.png');
-        this.load.image('trees', './assets/Trees.png');
-        this.load.image('backgrass', './assets/Back Grass.png');
-        this.load.image('foregrass', './assets/Foie Gras.png');
-        
 
-        this.load.aseprite('player', './assets/player.png', './assets/player.json');
-        this.load.aseprite('star', './assets/star.png', './assets/Star.json');
     }
 
     create() {
-        // Place background tile sprite
-        this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0);
-
-        // Place moon sprite
-        this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0);
-
-        // Place background tile sprite
-        this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0);
-        this.clouds.setTilePosition(cloudsPos.x + 0.5, cloudsPos.y + 0.0125)
-        
-        this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
-        this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
-
-        // Player
-        this.anims.createFromAseprite('player');
-        this.anims.createFromAseprite('star');
-
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
         this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
 
-        // Place fore grass tile sprite
-        this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
+        // Place background tile sprites
+        this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0).setDepth(-5);
 
-        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha);
+        // Place moon sprite
+        this.moon = this.add.image(0, 0, 'moon').setOrigin(0, 0).setDepth(-4);
+
+        // Place foreground tile sprites
+        this.clouds = this.add.tileSprite(0, 0, width, height, 'clouds').setOrigin(0, 0).setDepth(-3);
+        this.clouds.setTilePosition(cloudsPos.x + 0.5, cloudsPos.y + 0.0125)
+        
+        this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0).setDepth(-2);
+        this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0).setDepth(-1);
+        this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0).setDepth(1);
+
+        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha).setDepth(10);
 
         // Background Music
         let bgm = this.sound.add('bgm', { loop: true });
@@ -64,6 +47,16 @@ class Play extends Phaser.Scene {
             this.select.play()
             this.scene.start('menuScene')
         }, this)
+
+        this.score = 0
+
+        // Collisions
+        this.physics.add.collider(this.player, this.star, (player, star) => {
+            this.score++
+            this.star.reset()
+
+            console.log(this.score)
+        })
         
         // GAME OVER flag
         this.gameOver = false

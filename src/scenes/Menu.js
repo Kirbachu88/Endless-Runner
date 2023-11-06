@@ -6,8 +6,6 @@ class Menu extends Phaser.Scene {
     
     preload() {
         // Load images/tile sprites
-        // this.load.image('titlescreen', './assets/titlescreen.png');
-
         this.load.image('stars', './assets/Stars.png');
         this.load.image('title', './assets/Title.png');
         this.load.image('moon', './assets/moon.png');
@@ -18,14 +16,16 @@ class Menu extends Phaser.Scene {
         this.load.image('spaceToStart', './assets/SpaceToStart.png');
         this.load.image('otherMenus', './assets/Other Menus.png');
 
+        // Load Aseprite Sheets
+        this.load.aseprite('player', './assets/player.png', './assets/player.json');
+        this.load.aseprite('star', './assets/star.png', './assets/Star.json');
+
         // Load audio
         this.load.audio('select', './assets/select_wood.wav');
         this.load.audio('howl', './assets/howl.wav');
         this.load.audio('jump', './assets/jump_heavy.wav');
         this.load.audio('thud', './assets/thud.wav');
         this.load.audio('bgm', './assets/Loop+Volume Edit - 11 HoliznaCC0 - Dance Till You Die.mp3');
-
-        this.load.aseprite('player', './assets/player.png', './assets/player.json');
     }
 
     create() {
@@ -43,8 +43,9 @@ class Menu extends Phaser.Scene {
                 this.trees = this.add.tileSprite(0, 0, width, height, 'trees').setOrigin(0, 0);
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0);
 
-        // "Player"
+        // Create Animations
         this.anims.createFromAseprite('player');
+        this.anims.createFromAseprite('star');
 
         // Add player (p1)
         this.player = this.add.sprite(width / 8, height, 'player', 15).setOrigin(0, 0.75)
