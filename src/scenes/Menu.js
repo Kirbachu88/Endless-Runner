@@ -16,7 +16,7 @@ class Menu extends Phaser.Scene {
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
         this.load.image('spaceToStart', './assets/SpaceToStart.png');
-        this.load.image('menus', './assets/Other Menus.png');
+        this.load.image('otherMenus', './assets/Other Menus.png');
 
         // Load audio
         this.load.audio('select', './assets/select_wood.wav');
@@ -52,7 +52,9 @@ class Menu extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
-        this.title = this.add.sprite(width / 7, height / 15, 'title').setOrigin(0, 0).setAlpha(0);
+        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(0);
+        this.spaceToStart = this.add.sprite(width / 2, height / 2, 'spaceToStart').setAlpha(0);
+        this.otherMenus = this.add.sprite(width * 7 / 9, height * 7 / 9, 'otherMenus').setAlpha(0);
         this.select = this.sound.add('select')
         this.sfxHowl = this.sound.add('howl', { volume: 0.5})
 
@@ -65,6 +67,8 @@ class Menu extends Phaser.Scene {
 
         spaceBar.on('down', () => {
             if (!this.sceneTransition) {
+                this.spaceToStart.setAlpha(0)
+                this.otherMenus.setAlpha(0)
                 this.sceneTransition = true
                 if (!this.sfxHowl.isPlaying) {
                     this.sfxHowl.play()
@@ -93,6 +97,18 @@ class Menu extends Phaser.Scene {
 
     update() {
         this.title.setAlpha(this.title.alpha + 0.0125)
+        if(this.title.alpha >= 1) {
+            this.time.delayedCall(1000, () => {
+                if(!this.sceneTransition) {
+                    this.spaceToStart.setAlpha(1)
+                    this.time.delayedCall(1000, () => {
+                        if(!this.sceneTransition) {
+                            this.otherMenus.setAlpha(1)
+                        }
+                    })
+                }
+            })
+        }
 
         this.clouds.tilePositionX += 0.25;
         this.clouds.tilePositionY += 0.00625;

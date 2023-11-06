@@ -41,7 +41,7 @@ class Play extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
-        this.title = this.add.sprite(width / 7, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha);
+        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha);
 
         // Background Music
         let bgm = this.sound.add('bgm', { loop: true });
