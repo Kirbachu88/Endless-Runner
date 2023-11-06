@@ -16,6 +16,7 @@ class Play extends Phaser.Scene {
         
 
         this.load.aseprite('player', './assets/player.png', './assets/player.json');
+        this.load.aseprite('star', './assets/star.png', './assets/Star.json');
     }
 
     create() {
@@ -34,9 +35,11 @@ class Play extends Phaser.Scene {
 
         // Player
         this.anims.createFromAseprite('player');
+        this.anims.createFromAseprite('star');
 
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
+        this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
 
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
@@ -88,6 +91,7 @@ class Play extends Phaser.Scene {
         // Run (Literally)
         if (!this.gameOver) {
             this.player.update()    // Update Player sprite
+            this.star.update()
         }
 
         this.title.setAlpha(this.title.alpha - 0.0125)
