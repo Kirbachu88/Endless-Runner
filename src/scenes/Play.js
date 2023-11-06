@@ -12,6 +12,7 @@ class Play extends Phaser.Scene {
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
         this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
+        this.rock = new Rock(this, width / 2, height - 64, 'rock').setOrigin(0, 0);
 
         // Place background tile sprites
         this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0).setDepth(-5);
@@ -85,6 +86,7 @@ class Play extends Phaser.Scene {
         if (!this.gameOver) {
             this.player.update()    // Update Player sprite
             this.star.update()
+            this.rock.update()
         }
 
         this.title.setAlpha(this.title.alpha - 0.0125)
