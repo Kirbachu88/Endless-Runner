@@ -41,6 +41,7 @@ let game = new Phaser.Game(config)
 let { height, width } = game.config // Destructuring an object and assigning its properties to variables
 
 let musicPlaying = false
+let titleAlpha = 0
 let cloudsPos = {
     x: 0,
     y: 0

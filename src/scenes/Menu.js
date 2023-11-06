@@ -9,11 +9,14 @@ class Menu extends Phaser.Scene {
         // this.load.image('titlescreen', './assets/titlescreen.png');
 
         this.load.image('stars', './assets/Stars.png');
+        this.load.image('title', './assets/Title.png');
         this.load.image('moon', './assets/moon.png');
         this.load.image('clouds', './assets/Clouds.png');
         this.load.image('trees', './assets/Trees.png');
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
+        this.load.image('spaceToStart', './assets/SpaceToStart.png');
+        this.load.image('menus', './assets/Other Menus.png');
 
         // Load audio
         this.load.audio('select', './assets/select_wood.wav');
@@ -49,6 +52,7 @@ class Menu extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
+        this.title = this.add.sprite(width / 7, height / 15, 'title').setOrigin(0, 0).setAlpha(0);
         this.select = this.sound.add('select')
         this.sfxHowl = this.sound.add('howl', { volume: 0.5})
 
@@ -67,6 +71,7 @@ class Menu extends Phaser.Scene {
                     this.player.play('Start')
                 }
                 this.transition = setTimeout(() => {
+                    titleAlpha = this.title.alpha
                     cloudsPos = {
                         x: this.clouds.tilePositionX,
                         y: this.clouds.tilePositionY
@@ -76,6 +81,7 @@ class Menu extends Phaser.Scene {
             }
             spaceBar.on('down', () => {
                 clearTimeout(this.transition);
+                titleAlpha = this.title.alpha
                 cloudsPos = {
                     x: this.clouds.tilePositionX,
                     y: this.clouds.tilePositionY
@@ -86,6 +92,8 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
+        this.title.setAlpha(this.title.alpha + 0.0125)
+
         this.clouds.tilePositionX += 0.25;
         this.clouds.tilePositionY += 0.00625;
 

@@ -7,11 +7,13 @@ class Play extends Phaser.Scene {
     preload() {
         // Load images/tile sprites
         this.load.image('stars', './assets/Stars.png');
+        this.load.image('title', './assets/Title.png');
         this.load.image('moon', './assets/moon.png');
         this.load.image('clouds', './assets/Clouds.png');
         this.load.image('trees', './assets/Trees.png');
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
+        
 
         this.load.aseprite('player', './assets/player.png', './assets/player.json');
     }
@@ -38,6 +40,8 @@ class Play extends Phaser.Scene {
 
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
+
+        this.title = this.add.sprite(width / 7, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha);
 
         // Background Music
         let bgm = this.sound.add('bgm', { loop: true });
@@ -85,6 +89,8 @@ class Play extends Phaser.Scene {
         if (!this.gameOver) {
             this.player.update()    // Update Player sprite
         }
+
+        this.title.setAlpha(this.title.alpha - 0.0125)
     }
 
     someFunction(arg) {
