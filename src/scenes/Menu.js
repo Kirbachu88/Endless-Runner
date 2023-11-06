@@ -43,7 +43,7 @@ class Menu extends Phaser.Scene {
         this.anims.createFromAseprite('player');
 
         // Add player (p1)
-        this.player = this.add.sprite(width / 8, height, 'player').setOrigin(0, 0.75)
+        this.player = this.add.sprite(width / 8, height, 'player', 15).setOrigin(0, 0.75)
 
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);

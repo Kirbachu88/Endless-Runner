@@ -33,7 +33,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
         this.sfxLand = scene.sound.add('thud', { volume: 0.4})  // Landing
 
-        this.play({key: 'Walk', repeat: -1, frameRate: 4})
+        this.play({key: 'Walk', repeat: -1, frameRate: 12})
     }
     
     update() {
@@ -77,7 +77,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             if (this.thud) {
                 this.isJumping = false
                 this.velocity = 200
-                this.play({key: 'Walk', repeat: -1, frameRate: 4})
+                this.play({key: 'Walk', repeat: -1, frameRate: 12})
                 this.thud = false
                 this.sfxLand.play()
             }
