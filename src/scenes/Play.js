@@ -18,6 +18,8 @@ class Play extends Phaser.Scene {
 
         this.rocks = this.add.group([this.rock, this.rock2, this.rock3])
 
+        this.pointStar = this.add.sprite(3, 0, 'star').setOrigin(0, 0).setScale(2)
+
         // Place background tile sprites
         this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0).setDepth(-5);
 
@@ -82,19 +84,16 @@ class Play extends Phaser.Scene {
         })
 
         // I hate adding text in Phaser 3
-        let textConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'left',
-            padding: {
-                top: 5,
-                bottom: 5
-            },
-            fixedWidth: width / 2
-        }
-        this.scoreText = this.add.text(width / 2, 5, this.score, textConfig)
+        this.scoreShadow = this.add.text(80, 5, this.score, {
+            fontFamily: 'Trebuchet MS',
+            fontSize: '72px',
+            color: '#000000'
+        })
+        this.scoreText = this.add.text(85, 0, this.score, {
+            fontFamily: 'Trebuchet MS',
+            fontSize: '72px',
+            color: '#5fcde4'
+        })
     }
 
     update() {
@@ -139,7 +138,8 @@ class Play extends Phaser.Scene {
         }
 
         this.title.setAlpha(this.title.alpha - 0.0125)
-        this.scoreText.text = "Score: " + this.score
+        this.scoreShadow.text = this.score
+        this.scoreText.text = this.score
         console.log(this.score)
     }
 
