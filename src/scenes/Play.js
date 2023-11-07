@@ -12,7 +12,7 @@ class Play extends Phaser.Scene {
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
         this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
-        this.rock = new Rock(this, width / 2, height - 64, 'rock').setOrigin(0, 0);
+        this.rock = new Rock(this, width * 3 / 4, height - 64, 'rock').setOrigin(0, 0);
 
         // Place background tile sprites
         this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0).setDepth(-5);
@@ -58,37 +58,38 @@ class Play extends Phaser.Scene {
 
             console.log(this.score)
         })
+
+        this.physics.add.collider(this.player.hitbox, this.rock, (player, rock) => {
+            this.gameOver = true
+        })
         
         // GAME OVER flag
         this.gameOver = false
     }
 
     update() {
-        // Check key input for Restart
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
-            this.scene.restart(); 
-        }
-
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            this.scene.start("menuScene");
-        }
-
-        // Scrolling Tile Sprites
-        this.stars.tilePositionX += 0.25;
-        this.stars.tilePositionY += 0.0125;
-        this.trees.tilePositionX += 3;
-        this.backgrass.tilePositionX += 7;
-        this.foregrass.tilePositionX += 8;
-
         // Run (Literally)
         if (!this.gameOver) {
             this.player.update()    // Update Player sprite
             this.star.update()
             this.rock.update()
 
+            // Scrolling Tile Sprites
+            this.stars.tilePositionX += 0.25;
+            this.stars.tilePositionY += 0.0125;
+            this.trees.tilePositionX += 3;
+            this.backgrass.tilePositionX += 7;
+            this.foregrass.tilePositionX += 8;
+
             this.clouds.tilePositionX += 0.5;
             this.clouds.tilePositionY += 0.0125;
         } else {
+            this.player.stop()
+            if (cursors.space.isDown) {
+                titleAlpha = 0
+                this.scene.restart()
+            }
+
             this.clouds.tilePositionX += 0.25;
             this.clouds.tilePositionY += 0.00625;
         }
