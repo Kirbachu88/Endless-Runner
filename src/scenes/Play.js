@@ -40,6 +40,7 @@ class Play extends Phaser.Scene {
         }
 
         this.select = this.sound.add('select')
+        this.hit = this.sound.add('hit', {volume: 0.4})
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
@@ -62,6 +63,7 @@ class Play extends Phaser.Scene {
         })
 
         this.physics.add.collider(this.player.hitbox, this.rock, (player, rock) => {
+            if (!this.gameOver) this.hit.play()
             this.gameOver = true
         })
         
@@ -89,6 +91,7 @@ class Play extends Phaser.Scene {
             this.player.stop()
             this.spaceToRestart.setAlpha(1)
             this.otherMenus.setAlpha(1)
+            
             if (cursors.space.isDown) {
                 titleAlpha = 0
                 this.select.play();
