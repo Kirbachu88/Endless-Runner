@@ -11,8 +11,8 @@ class Play extends Phaser.Scene {
     create() {
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
-        this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
-        this.rock = new Rock(this, width, height - 64, 'rock').setOrigin(0, 0);
+        this.star = new Star(this, width * 1.25, height / 2, 'star').setOrigin(0, 0).setScale(2);
+        this.rock = new Rock(this, width * 2, height - 64, 'rock').setOrigin(0, 0);
         this.rock2 = new Rock(this, width * 8.75, height - 64, 'rock').setOrigin(0, 0);
         this.rock3 = new Rock(this, width * 25, height - 64, 'rock').setOrigin(0, 0);
 
@@ -65,11 +65,13 @@ class Play extends Phaser.Scene {
 
         // Collisions
         this.physics.add.collider(this.player, this.star, (player, star) => {
+            this.star.disableBody()
             if (!this.gameOver) {
                 this.pickup.play()
                 this.score
                 this.star.reset()
             }
+            this.star.enableBody()
         })
 
         this.physics.add.collider(this.player.hitbox, this.rocks, (player, rock) => {
