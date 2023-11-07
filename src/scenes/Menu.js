@@ -60,7 +60,7 @@ class Menu extends Phaser.Scene {
         // Place fore grass tile sprite
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0);
 
-        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(0);
+        this.title = this.add.sprite(width / 2.5, height / 5.5, 'title').setOrigin(0.5).setAlpha(0);
         this.spaceToStart = this.add.sprite(width / 2, height / 2, 'spaceToStart').setAlpha(0);
         this.otherMenus = this.add.sprite(width * 7 / 9, height * 7 / 9, 'otherMenus').setAlpha(0);
         this.select = this.sound.add('select')

@@ -34,7 +34,7 @@ class Play extends Phaser.Scene {
         this.backgrass = this.add.tileSprite(0, 0, width, height, 'backgrass').setOrigin(0, 0).setDepth(-1);
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0).setDepth(1);
 
-        this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha).setDepth(10);
+        this.title = this.add.sprite(width / 2.5, height / 5.5, 'title').setOrigin(0.5).setAlpha(titleAlpha).setDepth(10);
         this.spaceToRestart = this.add.sprite(width / 2, height / 2, 'spaceToRestart').setAlpha(0)
         this.otherMenus = this.add.sprite(width * 7 / 9, height * 7 / 9, 'otherMenus').setAlpha(0);
 
