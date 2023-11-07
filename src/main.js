@@ -1,6 +1,6 @@
 /***********************************************/
 /* Author: Angela Ku
-/* Title:  Endless Runner (WIP)
+/* Title:  Starbitten Run
 /* Time:   ?
 /*
 /* Citations
