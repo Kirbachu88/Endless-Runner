@@ -65,6 +65,9 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.player.hitbox, this.rock, (player, rock) => {
             if (!this.gameOver) this.hit.play()
             this.gameOver = true
+            
+            this.player.body.setCollideWorldBounds(false)
+            this.player.body.setGravityX(0)
         })
         
         // GAME OVER flag
@@ -91,7 +94,7 @@ class Play extends Phaser.Scene {
             this.player.stop()
             this.spaceToRestart.setAlpha(1)
             this.otherMenus.setAlpha(1)
-            
+
             if (cursors.space.isDown) {
                 titleAlpha = 0
                 this.select.play();
