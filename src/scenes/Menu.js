@@ -14,6 +14,7 @@ class Menu extends Phaser.Scene {
         this.load.image('backgrass', './assets/Back Grass.png');
         this.load.image('foregrass', './assets/Foie Gras.png');
         this.load.image('spaceToStart', './assets/SpaceToStart.png');
+        this.load.image('spaceToRestart', './assets/SpaceToRestart.png');
         this.load.image('otherMenus', './assets/Other Menus.png');
         this.load.image('manual', './assets/Manual.png');
 

@@ -29,6 +29,8 @@ class Play extends Phaser.Scene {
         this.foregrass = this.add.tileSprite(0, 0, width, height, 'foregrass').setOrigin(0, 0).setDepth(1);
 
         this.title = this.add.sprite(width / 15, height / 15, 'title').setOrigin(0, 0).setAlpha(titleAlpha).setDepth(10);
+        this.spaceToRestart = this.add.sprite(width / 2, height / 2, 'spaceToRestart').setAlpha(0)
+        this.otherMenus = this.add.sprite(width * 7 / 9, height * 7 / 9, 'otherMenus').setAlpha(0);
 
         // Background Music
         let bgm = this.sound.add('bgm', { loop: true });
@@ -41,7 +43,7 @@ class Play extends Phaser.Scene {
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
         cursors = this.input.keyboard.createCursorKeys()
-        keys = this.input.keyboard.addKeys('W,A,S,D')
+        keys = this.input.keyboard.addKeys('W,A,S,D,C,M')
         escKey = this.input.keyboard.addKey('ESC')
 
         escKey.on('down', () => {
@@ -85,9 +87,20 @@ class Play extends Phaser.Scene {
             this.clouds.tilePositionY += 0.0125;
         } else {
             this.player.stop()
+            this.spaceToRestart.setAlpha(1)
+            this.otherMenus.setAlpha(1)
             if (cursors.space.isDown) {
                 titleAlpha = 0
+                this.select.play();
                 this.scene.restart()
+            }
+            if (keys.C.isDown) {
+                this.select.play();
+                this.scene.start('creditsScene');
+            }
+            if (keys.M.isDown) {
+                this.select.play();
+                this.scene.start('manualScene');
             }
 
             this.clouds.tilePositionX += 0.25;
