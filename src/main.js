@@ -14,6 +14,7 @@
 /* - Aseprite sprite atlas              - https://saricden.github.io/aseprite-sprites-in-phaser3-5
 /* - setTimeout()                       - https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
 /* - clearTimeout()                     - https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout
+/* - Compound bodies                    - https://codepen.io/samme/pen/ExYGRyo
 /***********************************************/
 
 let config = {

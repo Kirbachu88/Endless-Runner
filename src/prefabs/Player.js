@@ -13,7 +13,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         */
         scene.add.existing(this)    // Add to existing, displayList, updateList
         scene.physics.add.existing(this)
-        
+
+        this.hitbox = scene.physics.add.image()
+        this.hitbox.body.setSize(100, 50)
+
         this.body.setCollideWorldBounds(true)
         this.setGravityX(-3000)
         this.setGravityY(2500)
@@ -92,11 +95,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             }
         }
 
-
-
         playerVector.normalize() // Does all that math for us
 
         this.setVelocityX(this.velocity * playerVector.x)
+        this.hitbox.body.position.x = this.body.position.x + 15
+        this.hitbox.body.position.y = this.body.position.y + 32
     }
 
     // Reset Player
