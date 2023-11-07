@@ -16,6 +16,7 @@ class Menu extends Phaser.Scene {
         this.load.image('spaceToStart', './assets/SpaceToStart.png');
         this.load.image('spaceToRestart', './assets/SpaceToRestart.png');
         this.load.image('otherMenus', './assets/Other Menus.png');
+        this.load.image('credits', './assets/Credits.png');
         this.load.image('manual', './assets/Manual.png');
 
         this.load.spritesheet('rock', './assets/Rocks.png', {frameWidth: 128});

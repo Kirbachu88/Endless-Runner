@@ -9,6 +9,8 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
+        this.credits = this.add.image(0, 0, 'credits').setOrigin(0, 0);
+
         this.select = this.sound.add('select')
 
         cursors = this.input.keyboard.createCursorKeys();
