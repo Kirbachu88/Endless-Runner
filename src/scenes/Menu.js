@@ -23,7 +23,7 @@ class Menu extends Phaser.Scene {
 
         // Load Aseprite Sheets
         this.load.aseprite('player', './assets/player.png', './assets/player.json');
-        this.load.aseprite('star', './assets/star.png', './assets/Star.json');
+        this.load.aseprite('star', './assets/Star.png', './assets/Star.json');
 
         // Load audio
         this.load.audio('select', './assets/select_wood.wav');
