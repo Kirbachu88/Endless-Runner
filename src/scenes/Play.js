@@ -76,8 +76,6 @@ class Play extends Phaser.Scene {
         // Scrolling Tile Sprites
         this.stars.tilePositionX += 0.25;
         this.stars.tilePositionY += 0.0125;
-        this.clouds.tilePositionX += 0.5;
-        this.clouds.tilePositionY += 0.0125;
         this.trees.tilePositionX += 3;
         this.backgrass.tilePositionX += 7;
         this.foregrass.tilePositionX += 8;
@@ -87,6 +85,12 @@ class Play extends Phaser.Scene {
             this.player.update()    // Update Player sprite
             this.star.update()
             this.rock.update()
+
+            this.clouds.tilePositionX += 0.5;
+            this.clouds.tilePositionY += 0.0125;
+        } else {
+            this.clouds.tilePositionX += 0.25;
+            this.clouds.tilePositionY += 0.00625;
         }
 
         this.title.setAlpha(this.title.alpha - 0.0125)
