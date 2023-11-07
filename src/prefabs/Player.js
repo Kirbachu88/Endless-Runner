@@ -24,13 +24,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         // Changing collision box
         this.body.setSize(128, 128).setOffset(64, 64)
 
-        this.MAX_JUMP_POWER = 1.3
+        this.MAX_JUMP_POWER = 1.33
         this.power = 0
         this.canJump = false
         this.isJumping = false
         this.thud = false
-        this.velocity = 200
-        this.jumpingVelocity = 300
+        this.velocity = 250
+        this.jumpingVelocity = 350
 
         // Add SFX
         this.sfxJump = scene.sound.add('jump', { volume: 0.3})  // Jumping
