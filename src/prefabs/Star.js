@@ -7,6 +7,7 @@ class Star extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
 
         this.play({key: 'Shine', repeat: -1})
+        this.counter = 0
     }
     
     update() {
@@ -20,6 +21,7 @@ class Star extends Phaser.Physics.Arcade.Sprite {
     reset() {
         this.setAlpha(1)
         this.body.setVelocity(0)
-        this.body.position.x = width
+        this.body.position.x = (width * 1.125) + (this.counter / width)
+        this.counter++
     }
 }
