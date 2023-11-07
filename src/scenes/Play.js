@@ -12,7 +12,11 @@ class Play extends Phaser.Scene {
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
         this.star = new Star(this, width / 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
-        this.rock = new Rock(this, width * 3 / 4, height - 64, 'rock').setOrigin(0, 0);
+        this.rock = new Rock(this, width, height - 64, 'rock').setOrigin(0, 0);
+        this.rock2 = new Rock(this, width * 8.75, height - 64, 'rock').setOrigin(0, 0);
+        this.rock3 = new Rock(this, width * 25, height - 64, 'rock').setOrigin(0, 0);
+
+        this.rocks = this.add.group([this.rock, this.rock2, this.rock3])
 
         // Place background tile sprites
         this.stars = this.add.tileSprite(0, 0, width, height, 'stars').setOrigin(0, 0).setDepth(-5);
@@ -40,6 +44,7 @@ class Play extends Phaser.Scene {
         }
 
         this.select = this.sound.add('select')
+        this.pickup = this.sound.add('pickup', {volume: 0.5})
         this.hit = this.sound.add('hit', {volume: 0.4})
 
         // Populating an object with Left/Right/Up/Down keys, Shift, and Space
@@ -52,26 +57,28 @@ class Play extends Phaser.Scene {
             this.scene.start('menuScene')
         }, this)
 
+                
+        // GAME OVER flag
+        this.gameOver = false
+
         this.score = 0
 
         // Collisions
         this.physics.add.collider(this.player, this.star, (player, star) => {
-            this.score++
-            this.star.reset()
-
-            console.log(this.score)
+            if (!this.gameOver) {
+                this.pickup.play()
+                this.score
+                this.star.reset()
+            }
         })
 
-        this.physics.add.collider(this.player.hitbox, this.rock, (player, rock) => {
+        this.physics.add.collider(this.player.hitbox, this.rocks, (player, rock) => {
             if (!this.gameOver) this.hit.play()
             this.gameOver = true
             
             this.player.body.setCollideWorldBounds(false)
             this.player.body.setGravityX(0)
         })
-        
-        // GAME OVER flag
-        this.gameOver = false
     }
 
     update() {
@@ -80,6 +87,8 @@ class Play extends Phaser.Scene {
             this.player.update()    // Update Player sprite
             this.star.update()
             this.rock.update()
+            this.rock2.update()
+            this.rock3.update()
 
             // Scrolling Tile Sprites
             this.stars.tilePositionX += 0.25;
