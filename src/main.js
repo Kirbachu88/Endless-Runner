@@ -15,6 +15,7 @@
 /* - setTimeout()                       - https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
 /* - clearTimeout()                     - https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout
 /* - Compound bodies                    - https://codepen.io/samme/pen/ExYGRyo
+/* - Web safe fonts                     - https://www.w3schools.com/cssref/css_websafe_fonts.php
 /***********************************************/
 
 let config = {
