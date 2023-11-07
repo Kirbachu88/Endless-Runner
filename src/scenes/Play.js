@@ -57,7 +57,6 @@ class Play extends Phaser.Scene {
             this.scene.start('menuScene')
         }, this)
 
-                
         // GAME OVER flag
         this.gameOver = false
 
@@ -68,7 +67,7 @@ class Play extends Phaser.Scene {
             this.star.disableBody()
             if (!this.gameOver) {
                 this.pickup.play()
-                this.score
+                this.score++
                 this.star.reset()
             }
             this.star.enableBody()
@@ -81,6 +80,21 @@ class Play extends Phaser.Scene {
             this.player.body.setCollideWorldBounds(false)
             this.player.body.setGravityX(0)
         })
+
+        // I hate adding text in Phaser 3
+        let textConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'left',
+            padding: {
+                top: 5,
+                bottom: 5
+            },
+            fixedWidth: width / 2
+        }
+        this.scoreText = this.add.text(width / 2, 5, this.score, textConfig)
     }
 
     update() {
@@ -125,6 +139,8 @@ class Play extends Phaser.Scene {
         }
 
         this.title.setAlpha(this.title.alpha - 0.0125)
+        this.scoreText.text = "Score: " + this.score
+        console.log(this.score)
     }
 
     someFunction(arg) {
