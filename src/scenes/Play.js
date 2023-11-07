@@ -140,7 +140,6 @@ class Play extends Phaser.Scene {
         this.title.setAlpha(this.title.alpha - 0.0125)
         this.scoreShadow.text = this.score
         this.scoreText.text = this.score
-        console.log(this.score)
     }
 
     someFunction(arg) {
