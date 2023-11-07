@@ -1,7 +1,21 @@
-/***********************************************/
+/**********************************************************************************************/
 /* Author: Angela Ku
 /* Title:  Starbitten Run
-/* Time:   ?
+/* Time:   40h
+/*
+/* Creative Tilt:
+/*
+/* If not the transition from the Menu to Play scene,
+/* I am happy I was able to make the jump have varying height,
+/* and cause the sprite changes during various points of the jump.
+/* Figuring out how to have a separate, more lenient hitbox that was
+/* attached to the player was also pretty tricky to figure out.
+/* 
+/* I drew/animated almost everything in Aseprite, even the Manual and Credits screens.
+/* I know I probably should have worked on the actual gameplay first,
+/* but adding the art to begin with made testing and debugging much more enjoyable.
+/* I appreciate Aseprite even more than before, since it made animating the player
+/* and making adjustments afterwards, incredibly easy.
 /*
 /* Citations
 /* - Change Background Color in HTML    - https://blog.hubspot.com/website/change-background-color-html
@@ -16,7 +30,7 @@
 /* - clearTimeout()                     - https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout
 /* - Compound bodies                    - https://codepen.io/samme/pen/ExYGRyo
 /* - Web safe fonts                     - https://www.w3schools.com/cssref/css_websafe_fonts.php
-/***********************************************/
+/**********************************************************************************************/
 
 let config = {
     type: Phaser.AUTO,
