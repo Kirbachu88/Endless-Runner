@@ -11,7 +11,7 @@ class Rock extends Phaser.Physics.Arcade.Sprite {
     }
     
     update() {
-        this.body.position.x -= 5
+        this.body.position.x -= 3 + (Phaser.Math.Between(0, (this.counter / 10)))
 
         if (this.body.position.x < -this.body.width) {
             this.reset()
