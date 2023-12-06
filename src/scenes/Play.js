@@ -11,11 +11,14 @@ class Play extends Phaser.Scene {
     create() {
         // Add player (p1)
         this.player = new Player(this, width / 8, height, 'player').setOrigin(0, 0);
-        this.star = new Star(this, width * 1.25, height / 2, 'star').setOrigin(0, 0).setScale(2);
+        this.star1 = new Star(this, width * 1.25, height / 2, 'star').setOrigin(0, 0).setScale(2);
+        this.star2 = new Star(this, width * 2, height / 2, 'star').setOrigin(0, 0).setScale(2);
+        this.star3 = new Star(this, width * 3.5, height / 2, 'star').setOrigin(0, 0).setScale(2);
         this.rock = new Rock(this, width * 2, height - 64, 'rock').setOrigin(0, 0);
         this.rock2 = new Rock(this, width * 8.75, height - 64, 'rock').setOrigin(0, 0);
         this.rock3 = new Rock(this, width * 25, height - 64, 'rock').setOrigin(0, 0);
 
+        this.starsGroup = this.add.group([this.star1, this.star2, this.star3])
         this.rocks = this.add.group([this.rock, this.rock2, this.rock3])
 
         this.pointStar = this.add.sprite(3, 0, 'star').setOrigin(0, 0).setScale(2)
@@ -65,14 +68,12 @@ class Play extends Phaser.Scene {
         this.score = 0
 
         // Collisions
-        this.physics.add.overlap(this.player, this.star, (player, star) => {
-            this.star.disableBody()
+        this.physics.add.overlap(this.starsGroup, this.player, (star) => {
             if (!this.gameOver) {
                 this.pickup.play()
                 this.score++
-                this.star.reset()
+                star.reset()
             }
-            this.star.enableBody()
         })
 
         this.physics.add.collider(this.player.hitbox, this.rocks, (player, rock) => {
@@ -100,7 +101,9 @@ class Play extends Phaser.Scene {
         // Run (Literally)
         if (!this.gameOver) {
             this.player.update()    // Update Player sprite
-            this.star.update()
+            this.star1.update()
+            this.star2.update()
+            this.star3.update()
             this.rock.update()
             this.rock2.update()
             this.rock3.update()

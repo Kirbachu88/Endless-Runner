@@ -21,7 +21,7 @@ class Star extends Phaser.Physics.Arcade.Sprite {
     reset() {
         this.setAlpha(1)
         this.body.setVelocity(0)
-        this.body.position.x = (width * 1.125) + (this.counter / width)
+        this.body.position.x = (width * Phaser.Math.Between(1, 3)) + (this.counter / width)
         this.body.position.y = Phaser.Math.Between(height / 2, height - this.body.height)
         this.counter++
     }
