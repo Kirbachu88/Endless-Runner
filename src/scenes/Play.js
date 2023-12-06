@@ -65,7 +65,7 @@ class Play extends Phaser.Scene {
         this.score = 0
 
         // Collisions
-        this.physics.add.collider(this.player, this.star, (player, star) => {
+        this.physics.add.overlap(this.player, this.star, (player, star) => {
             this.star.disableBody()
             if (!this.gameOver) {
                 this.pickup.play()
